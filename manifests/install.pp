@@ -5,11 +5,11 @@ class prometheus::install inherits prometheus {
   }
 
   user { 'prometheus':
-    ensure => 'present',
-    home => "/opt/prometheus-${prometheus::version}.linux-amd64",
-    shell => '/bin/false',
+    ensure     => 'present',
+    home       => "/opt/prometheus-${prometheus::version}.linux-amd64",
+    shell      => '/bin/false',
     managehome => false,
-    system => true,
+    system     => true,
   }
 
   if($prometheus::manage_package)
@@ -20,15 +20,15 @@ class prometheus::install inherits prometheus {
     }
 
     exec { 'wget prometheus':
-      command  => "wget https://github.com/prometheus/prometheus/releases/download/v${prometheus::version}/prometheus-${prometheus::version}.linux-amd64.tar.gz -O ${prometheus::srcdir}/prometheus-${prometheus::version}.tgz",
-      creates  => "${srcdir}/prometheus-${prometheus::version}.tgz",
-      requires => Exec['prometheus mkdir srcdir'],
+      command => "wget https://github.com/prometheus/prometheus/releases/download/v${prometheus::version}/prometheus-${prometheus::version}.linux-amd64.tar.gz -O ${prometheus::srcdir}/prometheus-${prometheus::version}.tgz",
+      creates => "${srcdir}/prometheus-${prometheus::version}.tgz",
+      require => Exec['prometheus mkdir srcdir'],
     }
 
     exec { 'extract prometheus':
-      command  => "tar xf ${srcdir}/prometheus-${prometheus::version}.tgz -C /opt",
-      creates  => "/opt/prometheus-${prometheus::version}.linux-amd64/prometheus",
-      requires => Exec['wget prometheus'],
+      command => "tar xf ${srcdir}/prometheus-${prometheus::version}.tgz -C /opt",
+      creates => "/opt/prometheus-${prometheus::version}.linux-amd64/prometheus",
+      require => Exec['wget prometheus'],
     }
   }
 
