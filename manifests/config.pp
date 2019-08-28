@@ -10,10 +10,10 @@ class prometheus::config inherits prometheus {
   }
 
   concat { '/etc/prometheus.yml':
-    ensure  => 'present',
-    owner   => 'prometheus',
-    group   => 'prometheus',
-    mode    => '0644',
+    ensure => 'present',
+    owner  => 'prometheus',
+    group  => 'prometheus',
+    mode   => '0644',
   }
 
   concat::fragment{ "prometheus.yml: header":

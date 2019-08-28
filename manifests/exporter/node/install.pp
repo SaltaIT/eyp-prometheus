@@ -33,7 +33,7 @@ class prometheus::exporter::node::install inherits prometheus::exporter::node {
     }
   }
 
-  file { "/opt/node_exporter":
+  file { '/opt/node_exporter':
     ensure  => 'link',
     target  => "/opt/node_exporter-${prometheus::exporter::node::version}.linux-${prometheus::params::arch}",
     require => [ Exec['extract node_exporter'], User['node_exporter']],

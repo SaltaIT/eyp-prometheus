@@ -1,11 +1,11 @@
 class prometheus::exporter::node::config inherits prometheus::exporter::node {
 
   systemd::service { $prometheus::params::node_exporter_service_name:
-    description   => 'Node Exporter',
-    after_units   => [ 'network-online.target' ],
-    user          => 'node_exporter',
-    restart       => 'on-failure',
-    execstart     => "/opt/node_exporter-${prometheus::exporter::node::version}.linux-${prometheus::params::arch}/node_exporter",
+    description => 'Node Exporter',
+    after_units => [ 'network-online.target' ],
+    user        => 'node_exporter',
+    restart     => 'on-failure',
+    execstart   => "/opt/node_exporter-${prometheus::exporter::node::version}.linux-${prometheus::params::arch}/node_exporter",
   }
 
   # file { "/opt/node_exporter-${prometheus::exporter::node::version}.linux-${prometheus::params::arch}/node_exporter.yml":
