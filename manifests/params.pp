@@ -30,13 +30,7 @@ class prometheus::params {
         {
           case $::operatingsystemrelease
           {
-            /^14.*$/:
-            {
-            }
-            /^16.*$/:
-            {
-            }
-            /^18.*$/:
+            /^1[468].*$/:
             {
             }
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }
