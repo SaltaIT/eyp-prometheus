@@ -5,7 +5,7 @@ class prometheus::exporter::node::config inherits prometheus {
     after_units   => [ 'network-online.target' ],
     user          => 'node_exporter',
     restart       => 'on-failure',
-    execstart     => "/opt/node_exporter-${prometheus::exporter::node::version}.linux-${prometheus::params::arch}/prometheus --config.file=/opt/prometheus/prometheus.yml --storage.tsdb.path=/opt/prometheus-data",
+    execstart     => "/opt/node_exporter-${prometheus::exporter::node::version}.linux-${prometheus::params::arch}/node_exporter",
   }
 
   # file { "/opt/node_exporter-${prometheus::exporter::node::version}.linux-${prometheus::params::arch}/node_exporter.yml":
