@@ -2,7 +2,7 @@
   "name": "eyp-prometheus",
   "version": "0.1.0",
   "author": "eyp",
-  "summary": null,
+  "summary": "prometheus and node_exporter management",
   "license": "Apache-2.0",
   "source": "https://github.com/SaltaIT/eyp-prometheus",
   "project_page": "https://github.com/SaltaIT/eyp-prometheus",
