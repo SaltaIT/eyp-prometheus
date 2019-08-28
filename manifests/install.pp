@@ -60,7 +60,6 @@ class prometheus::install inherits prometheus {
     owner   => 'prometheus',
     group   => 'prometheus',
     mode    => '0755',
-    recurse => true,
     require => User['prometheus'],
   }
 
