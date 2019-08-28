@@ -9,4 +9,12 @@ class prometheus::config inherits prometheus {
     execstart     => "/opt/prometheus-${prometheus::version}.linux-amd64/prometheus --config.file=/opt/prometheus/prometheus.yml --storage.tsdb.path=/opt/prometheus-data",
   }
 
+  file { "/opt/prometheus-${prometheus::version}.linux-amd64/prometheus.yml":
+    ensure  => 'present',
+    owner   => 'prometheus',
+    group   => 'prometheus',
+    mode    => '0644',
+    content => template("${module_name}/prometheus/prometheusyml.erb"),
+  }
+
 }
