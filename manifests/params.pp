@@ -16,7 +16,7 @@ class prometheus::params {
     {
       case $::operatingsystemrelease
       {
-        /^[5-8].*$/:
+        /^[7-8].*$/:
         {
         }
         default: { fail("Unsupported RHEL/CentOS version! - ${::operatingsystemrelease}")  }
@@ -30,7 +30,7 @@ class prometheus::params {
         {
           case $::operatingsystemrelease
           {
-            /^1[468].*$/:
+            /^1[68].*$/:
             {
             }
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }
