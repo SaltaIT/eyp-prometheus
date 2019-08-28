@@ -32,7 +32,7 @@ class prometheus::install inherits prometheus {
     }
   }
 
-  file { "/opt/prometheus":
+  file { '/opt/prometheus':
     ensure  => 'link',
     target  => "/opt/prometheus-${prometheus::version}.linux-${prometheus::params::arch}",
     require => [ Exec['extract prometheus'], User['prometheus']],
@@ -55,7 +55,7 @@ class prometheus::install inherits prometheus {
     require => [ Exec['extract prometheus'], User['prometheus']],
   }
 
-  file { "/opt/prometheus-data":
+  file { '/opt/prometheus-data':
     ensure  => 'directory',
     owner   => 'prometheus',
     group   => 'prometheus',
