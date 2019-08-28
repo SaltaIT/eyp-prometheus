@@ -1,6 +1,5 @@
 class prometheus::params {
-
-  $package_name='prometheus'
+  
   $service_name='prometheus'
 
   case $::osfamily
