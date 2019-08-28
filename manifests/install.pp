@@ -53,21 +53,21 @@ class prometheus::install inherits prometheus {
     require => [ Exec['extract prometheus'], User['prometheus']],
   }
 
-  file { "/opt/prometheus-${prometheus::version}.linux-amd64/data":
-    ensure  => 'directory',
-    owner   => 'prometheus',
-    group   => 'prometheus',
-    mode    => '0755',
-    recurse => true,
-    require => [ Exec['extract prometheus'], User['prometheus']],
-  }
-
   file { "/opt/prometheus-${prometheus::version}.linux-amd64/prometheus":
     ensure  => 'present',
     owner   => 'prometheus',
     group   => 'prometheus',
     mode    => '0755',
     require => [ Exec['extract prometheus'], User['prometheus']],
+  }
+
+  file { "/opt/prometheus-data":
+    ensure  => 'directory',
+    owner   => 'prometheus',
+    group   => 'prometheus',
+    mode    => '0755',
+    recurse => true,
+    require => User['prometheus'],
   }
 
 }
