@@ -2,13 +2,14 @@
   "name": "eyp-prometheus",
   "version": "0.1.0",
   "author": "eyp",
-  "summary": null,
+  "summary": "prometheus and node_exporter management",
   "license": "Apache-2.0",
   "source": "https://github.com/SaltaIT/eyp-prometheus",
   "project_page": "https://github.com/SaltaIT/eyp-prometheus",
   "issues_url": "https://github.com/SaltaIT/eyp-prometheus/issues",
   "dependencies": [
     {"name":"puppetlabs/stdlib","version_requirement":">= 1.0.0 < 9.9.9"},
+    {"name":"puppetlabs/concat","version_requirement":">= 1.0.0 < 9.9.9"},
     {"name":"eyp/systemd","version_requirement":">= 0.2.11 < 0.3.0"},
     {"name":"eyp/eyplib","version_requirement":">= 0.1.0 < 0.2.0"}
   ],

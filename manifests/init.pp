@@ -1,12 +1,14 @@
 class prometheus(
-                            $manage_package        = true,
-                            $package_ensure        = 'installed',
-                            $manage_service        = true,
-                            $manage_docker_service = true,
-                            $service_ensure        = 'running',
-                            $service_enable        = true,
-                            $srcdir                = '/usr/local/src',
-                            $version               = '2.12.0',
+                            $manage_package         = true,
+                            $package_ensure         = 'installed',
+                            $manage_service         = true,
+                            $manage_docker_service  = true,
+                            $service_ensure         = 'running',
+                            $service_enable         = true,
+                            $srcdir                 = '/usr/local/src',
+                            $version                = '2.12.0',
+                            $include_prometheus_job = true,
+                            $prometheus_job_targets = [ 'localhost:9090' ],
                           ) inherits prometheus::params{
 
   class { '::prometheus::install': }

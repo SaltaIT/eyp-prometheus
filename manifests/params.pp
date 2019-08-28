@@ -1,6 +1,14 @@
 class prometheus::params {
-  
+
   $service_name='prometheus'
+  $node_exporter_service_name='node_exporter'
+
+  case $::architecture
+  {
+    'x86_64': { $arch='amd64' }
+    'amd64':  { $arch='amd64' }
+    default:  { $arch='amd64' }
+  }
 
   case $::osfamily
   {
