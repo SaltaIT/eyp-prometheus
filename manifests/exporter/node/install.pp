@@ -39,7 +39,7 @@ class prometheus::exporter::node::install inherits prometheus::exporter::node {
     require => [ Exec['extract node_exporter'], User['node_exporter']],
   }
 
-  file { "/opt/node_exporter-${prometheus::version}.linux-${prometheus::params::arch}":
+  file { "/opt/node_exporter-${prometheus::exporter::node::version}.linux-${prometheus::params::arch}":
     ensure  => 'directory',
     owner   => 'node_exporter',
     group   => 'node_exporter',
@@ -48,7 +48,7 @@ class prometheus::exporter::node::install inherits prometheus::exporter::node {
     require => [ Exec['extract node_exporter'], User['node_exporter']],
   }
 
-  file { "/opt/node_exporter-${prometheus::version}.linux-${prometheus::params::arch}/node_exporter":
+  file { "/opt/node_exporter-${prometheus::exporter::node::version}.linux-${prometheus::params::arch}/node_exporter":
     ensure  => 'present',
     owner   => 'node_exporter',
     group   => 'node_exporter',
