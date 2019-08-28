@@ -1,4 +1,4 @@
-class prometheus::exporter::node::config inherits prometheus {
+class prometheus::exporter::node::config inherits prometheus::exporter::node {
 
   systemd::service { $prometheus::params::node_exporter_service_name:
     description   => 'Node Exporter',
