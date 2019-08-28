@@ -38,12 +38,6 @@ class prometheus::install inherits prometheus {
     require => [ Exec['extract prometheus'], User['prometheus']],
   }
 
-  file { "/etc/prometheus.yml":
-    ensure  => 'link',
-    target  => "/opt/prometheus-${prometheus::version}.linux-amd64/prometheus.yml",
-    require => [ Exec['extract prometheus'], User['prometheus']],
-  }
-
   file { "/opt/prometheus-${prometheus::version}.linux-amd64":
     ensure  => 'directory',
     owner   => 'prometheus',

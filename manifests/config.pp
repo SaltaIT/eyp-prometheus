@@ -17,4 +17,9 @@ class prometheus::config inherits prometheus {
     content => template("${module_name}/prometheus/prometheusyml.erb"),
   }
 
+  file { "/etc/prometheus.yml":
+    ensure  => 'link',
+    target  => "/opt/prometheus-${prometheus::version}.linux-amd64/prometheus.yml",
+  }
+
 }
