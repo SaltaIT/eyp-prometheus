@@ -6,7 +6,7 @@ class prometheus::install inherits prometheus {
 
   user { 'prometheus':
     ensure     => 'present',
-    home       => "/opt/prometheus-${prometheus::version}.linux-amd64",
+    home       => "/opt/prometheus-${prometheus::version}.linux-${prometheus::params::arch}",
     shell      => '/bin/false',
     managehome => false,
     system     => true,
@@ -20,25 +20,25 @@ class prometheus::install inherits prometheus {
     }
 
     exec { 'wget prometheus':
-      command => "wget https://github.com/prometheus/prometheus/releases/download/v${prometheus::version}/prometheus-${prometheus::version}.linux-amd64.tar.gz -O ${prometheus::srcdir}/prometheus-${prometheus::version}.tgz",
-      creates => "${srcdir}/prometheus-${prometheus::version}.tgz",
+      command => "wget https://github.com/prometheus/prometheus/releases/download/v${prometheus::version}/prometheus-${prometheus::version}.linux-${prometheus::params::arch}.tar.gz -O ${prometheus::srcdir}/prometheus-${prometheus::version}.tgz",
+      creates => "${prometheus::srcdir}/prometheus-${prometheus::version}.tgz",
       require => Exec['prometheus mkdir srcdir'],
     }
 
     exec { 'extract prometheus':
-      command => "tar xf ${srcdir}/prometheus-${prometheus::version}.tgz -C /opt",
-      creates => "/opt/prometheus-${prometheus::version}.linux-amd64/prometheus",
+      command => "tar xf ${prometheus::srcdir}/prometheus-${prometheus::version}.tgz -C /opt",
+      creates => "/opt/prometheus-${prometheus::version}.linux-${prometheus::params::arch}/prometheus",
       require => Exec['wget prometheus'],
     }
   }
 
   file { "/opt/prometheus":
     ensure  => 'link',
-    target  => "/opt/prometheus-${prometheus::version}.linux-amd64",
+    target  => "/opt/prometheus-${prometheus::version}.linux-${prometheus::params::arch}",
     require => [ Exec['extract prometheus'], User['prometheus']],
   }
 
-  file { "/opt/prometheus-${prometheus::version}.linux-amd64":
+  file { "/opt/prometheus-${prometheus::version}.linux-${prometheus::params::arch}":
     ensure  => 'directory',
     owner   => 'prometheus',
     group   => 'prometheus',
@@ -47,7 +47,7 @@ class prometheus::install inherits prometheus {
     require => [ Exec['extract prometheus'], User['prometheus']],
   }
 
-  file { "/opt/prometheus-${prometheus::version}.linux-amd64/prometheus":
+  file { "/opt/prometheus-${prometheus::version}.linux-${prometheus::params::arch}/prometheus":
     ensure  => 'present',
     owner   => 'prometheus',
     group   => 'prometheus',

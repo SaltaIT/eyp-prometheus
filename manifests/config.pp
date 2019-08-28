@@ -6,10 +6,10 @@ class prometheus::config inherits prometheus {
     after_units   => [ 'network-online.target' ],
     user          => 'prometheus',
     restart       => 'on-failure',
-    execstart     => "/opt/prometheus-${prometheus::version}.linux-amd64/prometheus --config.file=/opt/prometheus/prometheus.yml --storage.tsdb.path=/opt/prometheus-data",
+    execstart     => "/opt/prometheus-${prometheus::version}.linux-${prometheus::params::arch}/prometheus --config.file=/opt/prometheus/prometheus.yml --storage.tsdb.path=/opt/prometheus-data",
   }
 
-  file { "/opt/prometheus-${prometheus::version}.linux-amd64/prometheus.yml":
+  file { "/opt/prometheus-${prometheus::version}.linux-${prometheus::params::arch}/prometheus.yml":
     ensure  => 'present',
     owner   => 'prometheus',
     group   => 'prometheus',
@@ -19,8 +19,8 @@ class prometheus::config inherits prometheus {
 
   file { "/etc/prometheus.yml":
     ensure  => 'link',
-    target  => "/opt/prometheus-${prometheus::version}.linux-amd64/prometheus.yml",
-    require => File["/opt/prometheus-${prometheus::version}.linux-amd64/prometheus.yml"],
+    target  => "/opt/prometheus-${prometheus::version}.linux-${prometheus::params::arch}/prometheus.yml",
+    require => File["/opt/prometheus-${prometheus::version}.linux-${prometheus::params::arch}/prometheus.yml"],
   }
 
 }
