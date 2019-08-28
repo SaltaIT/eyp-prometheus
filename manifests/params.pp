@@ -1,7 +1,7 @@
 class prometheus::params {
 
   $service_name='prometheus'
-  $node_exporter_service_name='prometheus'
+  $node_exporter_service_name='node_exporter'
 
   case $::architecture
   {
