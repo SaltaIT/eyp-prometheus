@@ -6,7 +6,7 @@ class prometheus::config inherits prometheus {
     after_units   => [ 'network-online.target' ],
     user          => 'prometheus',
     restart       => 'on-failure',
-    execstart     => "/opt/prometheus-${prometheus::version}.linux-amd64/prometheus --config.file=/opt/prometheus/prometheus.yml --storage.tsdb.path==/opt/prometheus-data",
+    execstart     => "/opt/prometheus-${prometheus::version}.linux-amd64/prometheus --config.file=/opt/prometheus/prometheus.yml --storage.tsdb.path=/opt/prometheus-data",
   }
 
 }
