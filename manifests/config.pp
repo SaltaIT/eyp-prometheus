@@ -7,7 +7,7 @@ class prometheus::config inherits prometheus {
 
     user => 'prometheus',
     restart => 'on-failure',
-    execstart => "/opt/prometheus/prometheus --config.file=/opt/prometheus/prometheus.yml --storage.local.path=/opt/prometheus-data",
+    execstart => "/opt/prometheus/prometheus --config.file=/opt/prometheus/prometheus.yml --storage.tsdb.path==/opt/prometheus-data",
   }
 
 }
