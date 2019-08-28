@@ -16,7 +16,7 @@ class prometheus::config inherits prometheus {
     mode   => '0644',
   }
 
-  concat::fragment{ "prometheus.yml: header":
+  concat::fragment{ 'prometheus.yml header':
     target  => '/etc/prometheus.yml',
     order   => '00',
     content => template("${module_name}/prometheus/prometheusyml.erb"),
