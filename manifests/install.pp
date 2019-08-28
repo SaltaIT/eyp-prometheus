@@ -48,7 +48,7 @@ class prometheus::install inherits prometheus {
     ensure  => 'directory',
     owner   => 'prometheus',
     group   => 'prometheus',
-    mode    => '0755'
+    mode    => '0755',
     recurse => true,
     require => [ Exec['extract prometheus'], User['prometheus']],
   }
@@ -57,7 +57,7 @@ class prometheus::install inherits prometheus {
     ensure  => 'directory',
     owner   => 'prometheus',
     group   => 'prometheus',
-    mode    => '0755'
+    mode    => '0755',
     recurse => true,
     require => [ Exec['extract prometheus'], User['prometheus']],
   }
@@ -66,7 +66,7 @@ class prometheus::install inherits prometheus {
     ensure  => 'present',
     owner   => 'prometheus',
     group   => 'prometheus',
-    mode    => '0755'
+    mode    => '0755',
     require => [ Exec['extract prometheus'], User['prometheus']],
   }
 
