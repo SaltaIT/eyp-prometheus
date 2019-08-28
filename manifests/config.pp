@@ -26,7 +26,7 @@ class prometheus::config inherits prometheus {
   file { "/opt/prometheus-${prometheus::version}.linux-${prometheus::params::arch}/prometheus.yml":
     ensure  => 'link',
     target  => '/etc/prometheus.yml',
-    require => File["/opt/prometheus-${prometheus::version}.linux-${prometheus::params::arch}/prometheus.yml"],
+    require => Concat['/etc/prometheus.yml'],
   }
 
 }
