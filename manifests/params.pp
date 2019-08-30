@@ -2,6 +2,7 @@ class prometheus::params {
 
   $service_name='prometheus'
   $node_exporter_service_name='node_exporter'
+  $haproxy_exporter_service_name='haproxy_exporter'
 
   case $::architecture
   {
