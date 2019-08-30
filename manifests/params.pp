@@ -2,6 +2,7 @@ class prometheus::params {
 
   $service_name='prometheus'
   $node_exporter_service_name='node_exporter'
+  $haproxy_exporter_service_name='haproxy_exporter'
 
   case $::architecture
   {
@@ -16,7 +17,7 @@ class prometheus::params {
     {
       case $::operatingsystemrelease
       {
-        /^[5-8].*$/:
+        /^[7-8].*$/:
         {
         }
         default: { fail("Unsupported RHEL/CentOS version! - ${::operatingsystemrelease}")  }
@@ -30,13 +31,7 @@ class prometheus::params {
         {
           case $::operatingsystemrelease
           {
-            /^14.*$/:
-            {
-            }
-            /^16.*$/:
-            {
-            }
-            /^18.*$/:
+            /^1[68].*$/:
             {
             }
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }

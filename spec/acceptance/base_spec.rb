@@ -8,7 +8,11 @@ describe 'prometheus class' do
     it 'should work with no errors' do
       pp = <<-EOF
 
-      class { 'prometheus': }
+      class { 'prometheus::exporter::node': }
+
+      class { 'prometheus':
+        prometheus_job_targets => [ 'localhost:9090', 'localhost:9100' ]
+      }
 
       EOF
 
