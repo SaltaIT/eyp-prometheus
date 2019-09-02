@@ -1,6 +1,6 @@
 {
   "name": "eyp-prometheus",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "eyp",
   "summary": "prometheus and node_exporter management",
   "license": "Apache-2.0",
