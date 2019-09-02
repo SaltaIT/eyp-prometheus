@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.4
+
+* added alertmanager
+
 ## 0.1.3
 
 * haproxy exporter: bugfix init script
