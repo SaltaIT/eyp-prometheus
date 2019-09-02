@@ -8,6 +8,8 @@ class prometheus::alertmanager::config inherits prometheus::alertmanager {
     execstart   => "/opt/alertmanager-${prometheus::alertmanager::version}.linux-${prometheus::params::arch}/alertmanager",
   }
 
+  # TODO: alertmanager.yml management
+  #
   # file { "/opt/alertmanager-${prometheus::alertmanager::version}.linux-${prometheus::params::arch}/alertmanager.yml":
   #   ensure  => 'present',
   #   owner   => 'prometheus',
