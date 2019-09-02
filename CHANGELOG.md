@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.3
+
+* haproxy exporter: bugfix init script
+
 ## 0.1.2
 
 * haproxy exporter: added socket support
