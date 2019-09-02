@@ -7,6 +7,8 @@ class prometheus::exporter::haproxy(
                             $service_enable        = true,
                             $srcdir                = '/usr/local/src',
                             $version               = '0.10.0',
+                            $scrape_uri            = 'http://localhost/;csv',
+                            $username              = 'haproxy_exporter',
                           ) inherits prometheus::params{
 
   class { '::prometheus::exporter::haproxy::install': }
