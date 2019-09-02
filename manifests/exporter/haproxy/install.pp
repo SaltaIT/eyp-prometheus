@@ -4,12 +4,16 @@ class prometheus::exporter::haproxy::install inherits prometheus::exporter::hapr
     path => '/usr/sbin:/usr/bin:/sbin:/bin',
   }
 
-  user { 'haproxy_exporter':
-    ensure     => 'present',
-    home       => "/opt/haproxy_exporter-${prometheus::exporter::haproxy::version}.linux-${prometheus::params::arch}",
-    shell      => '/bin/false',
-    managehome => false,
-    system     => true,
+  if ($prometheus::exporter::haproxy::username=='haproxy_exporter')
+  {
+    user { 'haproxy_exporter':
+      ensure     => 'present',
+      home       => "/opt/haproxy_exporter-${prometheus::exporter::haproxy::version}.linux-${prometheus::params::arch}",
+      shell      => '/bin/false',
+      managehome => false,
+      system     => true,
+      before     => File[ [ '/opt/haproxy_exporter', "/opt/haproxy_exporter-${prometheus::exporter::haproxy::version}.linux-${prometheus::params::arch}", "/opt/haproxy_exporter-${prometheus::exporter::haproxy::version}.linux-${prometheus::params::arch}/haproxy_exporter" ] ],
+    }
   }
 
   if($prometheus::exporter::haproxy::manage_package)
@@ -36,24 +40,24 @@ class prometheus::exporter::haproxy::install inherits prometheus::exporter::hapr
   file { '/opt/haproxy_exporter':
     ensure  => 'link',
     target  => "/opt/haproxy_exporter-${prometheus::exporter::haproxy::version}.linux-${prometheus::params::arch}",
-    require => [ Exec['extract haproxy_exporter'], User['haproxy_exporter']],
+    require => Exec['extract haproxy_exporter'],
   }
 
   file { "/opt/haproxy_exporter-${prometheus::exporter::haproxy::version}.linux-${prometheus::params::arch}":
     ensure  => 'directory',
-    owner   => 'haproxy_exporter',
-    group   => 'haproxy_exporter',
+    owner   => $prometheus::exporter::haproxy::username,
+    group   => $prometheus::exporter::haproxy::username,
     mode    => '0755',
     recurse => true,
-    require => [ Exec['extract haproxy_exporter'], User['haproxy_exporter']],
+    require => Exec['extract haproxy_exporter'],
   }
 
   file { "/opt/haproxy_exporter-${prometheus::exporter::haproxy::version}.linux-${prometheus::params::arch}/haproxy_exporter":
     ensure  => 'present',
-    owner   => 'haproxy_exporter',
-    group   => 'haproxy_exporter',
+    owner   => $prometheus::exporter::haproxy::username,
+    group   => $prometheus::exporter::haproxy::username,
     mode    => '0755',
-    require => [ Exec['extract haproxy_exporter'], User['haproxy_exporter']],
+    require => Exec['extract haproxy_exporter'],
   }
 
 }
