@@ -63,4 +63,20 @@ class prometheus::install inherits prometheus {
     require => User['prometheus'],
   }
 
+  file { '/etc/prometheus':
+    ensure  => 'directory',
+    owner   => 'prometheus',
+    group   => 'prometheus',
+    mode    => '0755',
+    require => User['prometheus'],
+  }
+
+  file { '/etc/prometheus/rules.d':
+    ensure  => 'directory',
+    owner   => 'prometheus',
+    group   => 'prometheus',
+    mode    => '0755',
+    require => File['/etc/prometheus'],
+  }
+
 }

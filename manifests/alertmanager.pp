@@ -1,3 +1,7 @@
+# --config.file="alertmanager.yml"
+#                            Alertmanager configuration file name.
+# --storage.path="data/"     Base path for data storage.
+# --data.retention=120h      How long to keep data for.
 class prometheus::alertmanager(
                             $manage_package        = true,
                             $package_ensure        = 'installed',

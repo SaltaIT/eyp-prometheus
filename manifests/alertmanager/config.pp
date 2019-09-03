@@ -5,23 +5,27 @@ class prometheus::alertmanager::config inherits prometheus::alertmanager {
     after_units => [ 'network-online.target' ],
     user        => 'alertmanager',
     restart     => 'on-failure',
-    execstart   => "/opt/alertmanager-${prometheus::alertmanager::version}.linux-${prometheus::params::arch}/alertmanager",
+    execstart   => "/opt/alertmanager-${prometheus::alertmanager::version}.linux-${prometheus::params::arch}/alertmanager --config.file=/etc/alertmanager.yml",
   }
 
-  # TODO: alertmanager.yml management
-  #
-  # file { "/opt/alertmanager-${prometheus::alertmanager::version}.linux-${prometheus::params::arch}/alertmanager.yml":
-  #   ensure  => 'present',
-  #   owner   => 'prometheus',
-  #   group   => 'prometheus',
-  #   mode    => '0644',
-  #   content => template("${module_name}/prometheus/prometheusyml.erb"),
-  # }
-  #
-  # file { "/etc/prometheus.yml":
-  #   ensure  => 'link',
-  #   target  => "/opt/prometheus-${prometheus::alertmanager::version}.linux-${prometheus::params::arch}/prometheus.yml",
-  #   require => File["/opt/prometheus-${prometheus::alertmanager::version}.linux-${prometheus::params::arch}/prometheus.yml"],
-  # }
+  concat { '/etc/alertmanager.yml':
+    ensure => 'present',
+    owner  => 'prometheus',
+    group  => 'prometheus',
+    mode   => '0644',
+  }
+
+  concat::fragment{ 'alertmanager.yml base':
+    target  => '/etc/alertmanager.yml',
+    order   => '00',
+    content => template("${module_name}/alertmanager/alertmanageryml.erb"),
+  }
+
+  # només per facilitat
+  file { "/opt/alertmanager-${prometheus::alertmanager::version}.linux-${prometheus::params::arch}/alertmanager.yml":
+    ensure  => 'link',
+    target  => '/etc/alertmanager.yml',
+    require => Concat['/etc/alertmanager.yml'],
+  }
 
 }
