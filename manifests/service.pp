@@ -8,6 +8,10 @@ class prometheus::service inherits prometheus {
   {
     if($prometheus::manage_service)
     {
+
+      # config check:
+      # ./promtool check config prometheus.yml
+
       service { $prometheus::params::service_name:
         ensure => $prometheus::service_ensure,
         enable => $prometheus::service_enable,

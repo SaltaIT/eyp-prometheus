@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.1.4
+
+* added alertmanager
+* added support for labels on **prometheus::job**
+
 ## 0.1.3
 
 * haproxy exporter: bugfix init script
