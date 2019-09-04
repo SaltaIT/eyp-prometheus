@@ -11,6 +11,12 @@ class prometheus::alertmanager(
                             $service_enable        = true,
                             $srcdir                = '/usr/local/src',
                             $version               = '0.18.0',
+                            $smtp_smarthost        = 'localhost:587',
+                            $smtp_from             = "AlertManager <alertmanager@${::fqdn}>",
+                            $smtp_require_tls      = true,
+                            $smtp_hello            = $::fqdn,
+                            $smtp_auth_username    = undef,
+                            $smtp_auth_password    = undef,
                           ) inherits prometheus::params{
 
   class { '::prometheus::alertmanager::install': }
