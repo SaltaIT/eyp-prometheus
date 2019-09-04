@@ -11,6 +11,8 @@ class prometheus::alertmanager(
                             $service_enable        = true,
                             $srcdir                = '/usr/local/src',
                             $version               = '0.18.0',
+                            $data_retention        = '120h',
+                            $storage_path          = undef,
                             $smtp_smarthost        = 'localhost:587',
                             $smtp_from             = "AlertManager <alertmanager@${::fqdn}>",
                             $smtp_require_tls      = true,

@@ -1,3 +1,7 @@
+# --config.file="alertmanager.yml"
+#                            Alertmanager configuration file name.
+# --storage.path="data/"     Base path for data storage.
+# --data.retention=120h      How long to keep data for.
 class prometheus::alertmanager::config inherits prometheus::alertmanager {
 
   systemd::service { $prometheus::params::alertmanger_service_name:
@@ -5,7 +9,7 @@ class prometheus::alertmanager::config inherits prometheus::alertmanager {
     after_units => [ 'network-online.target' ],
     user        => 'alertmanager',
     restart     => 'on-failure',
-    execstart   => "/opt/alertmanager-${prometheus::alertmanager::version}.linux-${prometheus::params::arch}/alertmanager --config.file=/etc/alertmanager.yml",
+    execstart   => "/opt/alertmanager-${prometheus::alertmanager::version}.linux-${prometheus::params::arch}/alertmanager --config.file=/etc/alertmanager.yml --data.retention=${prometheus::alertmanager::data_retention}",
   }
 
   concat { '/etc/alertmanager.yml':
