@@ -48,7 +48,7 @@ class prometheus::alertmanager::install inherits prometheus::alertmanager {
     require => [ Exec['extract alertmanager'], User['alertmanager']],
   }
 
-  file { ${prometheus::alertmanager::storage_path}:
+  file { $typoprometheus::alertmanager::storage_path:
     ensure  => 'directory',
     owner   => 'alertmanager',
     group   => 'alertmanager',
