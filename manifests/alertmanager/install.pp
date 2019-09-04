@@ -48,6 +48,14 @@ class prometheus::alertmanager::install inherits prometheus::alertmanager {
     require => [ Exec['extract alertmanager'], User['alertmanager']],
   }
 
+  file { ${prometheus::alertmanager::storage_path}:
+    ensure  => 'directory',
+    owner   => 'alertmanager',
+    group   => 'alertmanager',
+    mode    => '0755',
+    require => User['alertmanager'],
+  }
+
   file { "/opt/alertmanager-${prometheus::alertmanager::version}.linux-${prometheus::params::arch}/alertmanager":
     ensure  => 'present',
     owner   => 'alertmanager',

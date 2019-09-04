@@ -9,7 +9,7 @@ class prometheus::alertmanager::config inherits prometheus::alertmanager {
     after_units => [ 'network-online.target' ],
     user        => 'alertmanager',
     restart     => 'on-failure',
-    execstart   => "/opt/alertmanager-${prometheus::alertmanager::version}.linux-${prometheus::params::arch}/alertmanager --config.file=/etc/alertmanager.yml --data.retention=${prometheus::alertmanager::data_retention}",
+    execstart   => "/opt/alertmanager-${prometheus::alertmanager::version}.linux-${prometheus::params::arch}/alertmanager --config.file=/etc/alertmanager.yml --data.retention=${prometheus::alertmanager::data_retention} --storage.path=${prometheus::alertmanager::storage_path}",
   }
 
   concat { '/etc/alertmanager.yml':
