@@ -20,6 +20,7 @@ route:
   group_interval: 5m
   repeat_interval: 4h
   group_by: ['instance', 'alert']
+
   # All alerts that do not match the following child routes
   # will remain at the root node and be dispatched to 'default-receiver'.
   routes:
@@ -38,6 +39,6 @@ route:
       team: frontend
 
 receivers:
-  - name: 'team-1'
+  - name: 'default-receiver'
     email_configs:
       - to: 'user@domain.com'
