@@ -9,6 +9,7 @@ class prometheus::params {
   {
     'x86_64': { $arch='amd64' }
     'amd64':  { $arch='amd64' }
+    'armv7l': { $arch='armv7' }
     default:  { $arch='amd64' }
   }
 
