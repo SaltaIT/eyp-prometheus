@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.6
+
+* added support for **armv7** architecture
+
 ## 0.1.5
 
 * added support for **Debian 10**
