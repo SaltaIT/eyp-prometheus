@@ -38,8 +38,17 @@ class prometheus::params {
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }
           }
         }
-        'Debian': { fail('Unsupported')  }
-        default: { fail('Unsupported Debian flavour!')  }
+        'Debian':
+        {
+          case $::operatingsystemrelease
+          {
+            /^10.*$/:
+            {
+            }
+            default: { fail("Unsupported Debian version! - ${::operatingsystemrelease}")  }
+          }
+        }
+        default: { fail("Unsupported Debian flavour! - ${::operatingsystem}")  }
       }
     }
     default: { fail('Unsupported OS!')  }

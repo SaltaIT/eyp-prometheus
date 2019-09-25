@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.5
+
+* added support for **Debian 10**
+
 ## 0.1.4
 
 * added alertmanager
