@@ -41,6 +41,10 @@
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [ "10" ]
+    },
+    {
+      "operatingsystem": "Raspbian",
+      "operatingsystemrelease": [ "10" ]
     }
   ],
   "requirements": [
