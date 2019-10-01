@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.1.7
+## 0.1.6
 
 * added support for **armv7** architecture
 
