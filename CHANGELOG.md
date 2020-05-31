@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.8
+
+* extended **eyp-systemd** compatibility
+
 ## 0.1.7
 
 * added support for **armv7** architecture
